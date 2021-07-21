@@ -1904,9 +1904,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      title: '',
       name: '',
       file: '',
       success: ''
@@ -1926,6 +1929,8 @@ __webpack_require__.r(__webpack_exports__);
       };
       var data = new FormData();
       data.append('file', this.file);
+      data.append('title', this.title);
+      console.log('title', this.title);
       axios.post('/upload', data, config).then(function (res) {
         existingObj.success = res.data.success;
       })["catch"](function (err) {
@@ -37752,6 +37757,30 @@ var render = function() {
                 on: { submit: _vm.formSubmit }
               },
               [
+                _c("strong", [_vm._v("Title:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control",
                   attrs: { type: "file" },

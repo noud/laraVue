@@ -12,6 +12,8 @@
                         </div>
 
                         <form @submit="formSubmit" enctype="multipart/form-data">
+                        <strong>Title:</strong>
+                        <input type="text" class="form-control" v-model="title">
                         <input type="file" class="form-control" v-on:change="onChange">
                             <button class="btn btn-primary btn-block">Upload</button>
                         </form>
@@ -26,6 +28,7 @@
     export default {
         data() {
             return {
+                title: '',
                 name: '',
                 file: '',
                 success: ''
@@ -47,6 +50,8 @@
 
                 let data = new FormData();
                 data.append('file', this.file);
+                data.append('title', this.title);
+                console.log('title', this.title);
 
                 axios.post('/upload', data, config)
                     .then(function (res) {

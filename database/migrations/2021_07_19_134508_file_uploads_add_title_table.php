@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFileUploadsTable extends Migration
+class FileUploadsAddTitleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateFileUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_uploads', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('path')->nullable();            
-            $table->timestamps();
+        Schema::table('file_uploads', function (Blueprint $table) {
+            $table->string('title')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateFileUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_uploads');
+        Schema::table('file_uploads', function (Blueprint $table) {
+            $table->dropColumn('title');
+        });
     }
 }
