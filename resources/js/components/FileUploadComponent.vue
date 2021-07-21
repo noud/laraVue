@@ -51,7 +51,6 @@
                 let data = new FormData();
                 data.append('file', this.file);
                 data.append('title', this.title);
-                console.log('title', this.title);
 
                 axios.post('/upload', data, config)
                     .then(function (res) {
